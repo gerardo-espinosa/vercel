@@ -9,63 +9,70 @@
 }
 
 .section-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   margin-bottom: 1rem;
   color: var(--text);
 }
 
 .section-desc {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-2);
-  line-height: 1.7;
+  line-height: 1.75;
   max-width: 500px;
 }
 
+/* ── Grid ── */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 1px;
+  background: var(--border);
   border: 1px solid var(--border);
-  border-radius: 4px;
-  overflow: hidden;
 }
 
+/* ── Card ── */
 .service-card {
   background: var(--bg-2);
   padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  border: 1px solid transparent;
-  transition: all 0.25s ease;
   position: relative;
   overflow: hidden;
+  transition: background 0.3s ease;
 }
 
+/* Top neon line on hover */
 .service-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: 2px;
   background: var(--card-accent, var(--accent));
+  box-shadow: 0 0 12px var(--card-accent, var(--accent));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s ease;
 }
 
-.service-card:hover {
-  background: var(--surface);
-  border-color: var(--border);
+/* Bottom glow on hover */
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, rgba(var(--card-accent-rgb, 0,255,255), 0.04) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
-.service-card:hover::before {
-  transform: scaleX(1);
-}
+.service-card:hover { background: var(--surface); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover::after  { opacity: 1; }
 
+/* ── Card top row ── */
 .service-card-top {
   display: flex;
   align-items: center;
@@ -74,39 +81,48 @@
 
 .service-num {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   color: var(--text-3);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
 }
 
 .service-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--card-accent, var(--accent));
-  opacity: 0.4;
-  transition: opacity 0.2s;
+  opacity: 0.35;
+  transition: opacity 0.25s, box-shadow 0.25s;
 }
 
 .service-card:hover .service-dot {
   opacity: 1;
-  box-shadow: 0 0 10px var(--card-accent, var(--accent));
+  box-shadow: 0 0 12px var(--card-accent, var(--accent));
 }
 
+/* ── Text ── */
 .service-title {
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 400;
   color: var(--text);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   line-height: 1.3;
+  transition: color 0.2s;
+}
+
+.service-card:hover .service-title {
+  color: var(--card-accent, var(--accent));
 }
 
 .service-desc {
-  font-size: 0.875rem;
+  font-size: 0.855rem;
   color: var(--text-2);
-  line-height: 1.65;
+  line-height: 1.7;
   flex: 1;
 }
 
+/* ── Tags ── */
 .service-tags {
   display: flex;
   flex-wrap: wrap;
@@ -116,17 +132,17 @@
 
 .service-tag {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   color: var(--text-3);
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 0.2rem 0.5rem;
-  border-radius: 2px;
-  letter-spacing: 0.05em;
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 0.2rem 0.55rem;
+  border-radius: 0;
+  letter-spacing: 0.08em;
   transition: all 0.2s;
 }
 
 .service-card:hover .service-tag {
-  border-color: var(--border);
+  border-color: rgba(var(--card-accent), 0.2);
   color: var(--text-2);
 }
 
