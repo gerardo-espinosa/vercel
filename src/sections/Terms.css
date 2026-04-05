@@ -13,8 +13,9 @@
 .terms-block {
   background: var(--bg-2);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
 }
 
 .terms-block-title {
@@ -81,7 +82,7 @@
 .terms-footer {
   background: var(--bg-2);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 0;
   padding: 1.5rem;
 }
 

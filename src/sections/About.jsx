@@ -17,20 +17,23 @@ export default function About() {
   return (
     <section className="about-section" id="about">
       <div className="container about-inner">
-        <div className="about-content">
+        <div className="about-content reveal">
           <span className="section-label">Who we are</span>
-          <h2 className="section-title">About<br /><span className="accent-word">Geamy Services</span></h2>
+          <h2 className="section-title">
+            About<br />
+            <span className="accent-word">Geamy Services</span>
+          </h2>
 
           <p className="about-text">
-            Geamy Services LLC is a Miami-based IT consultancy run by Gerardo Espinosa — a network engineer 
+            Geamy Services LLC is a Miami-based IT consultancy run by Gerardo Espinosa — a network engineer
             with over 12 years of hands-on experience across ISP environments, managed services, and enterprise IT.
           </p>
           <p className="about-text">
-            The focus is straightforward: implement solutions that actually work, configure them right the first time, 
+            The focus is straightforward: implement solutions that actually work, configure them right the first time,
             and make sure your team can rely on them. No fluff, no unnecessary complexity.
           </p>
           <p className="about-text">
-            Whether you need to lock down your network, migrate to the cloud, or just get your office 
+            Whether you need to lock down your network, migrate to the cloud, or just get your office
             infrastructure running properly — this is the shop for it.
           </p>
 
@@ -45,7 +48,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="about-stack">
+        <div className="about-stack reveal reveal-delay-2">
           <p className="stack-label section-label">Tech stack</p>
           <div className="stack-grid">
             {stack.map(s => (

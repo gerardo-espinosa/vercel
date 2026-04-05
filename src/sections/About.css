@@ -12,20 +12,23 @@
 
 .accent-word {
   color: var(--accent);
+  text-shadow: 0 0 20px var(--accent-glow);
+  display: block;
 }
 
 .about-text {
   font-size: 0.95rem;
   color: var(--text-2);
-  line-height: 1.8;
+  line-height: 1.85;
   margin-bottom: 1rem;
 }
 
+/* ── Certs ── */
 .certs {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
 }
 
 .cert-badge {
@@ -33,40 +36,38 @@
   align-items: center;
   gap: 0.75rem;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--text-2);
+  letter-spacing: 0.04em;
 }
 
 .cert-status {
-  width: 8px;
-  height: 8px;
+  width: 8px; height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
 .cert-status.active {
   background: var(--green);
-  box-shadow: 0 0 8px var(--green);
+  box-shadow: 0 0 10px var(--green);
 }
 
 .cert-status.in-progress {
   background: #febc2e;
-  box-shadow: 0 0 8px rgba(254, 188, 46, 0.5);
+  box-shadow: 0 0 8px rgba(254,188,46,0.5);
 }
 
 .cert-wip {
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   color: var(--text-3);
-  letter-spacing: 0.08em;
-  border: 1px solid rgba(254, 188, 46, 0.2);
-  padding: 0.1rem 0.4rem;
+  letter-spacing: 0.1em;
+  border: 1px solid rgba(254,188,46,0.25);
+  padding: 0.1rem 0.5rem;
   border-radius: 2px;
 }
 
-/* Stack */
-.stack-label {
-  margin-bottom: 1.25rem;
-}
+/* ── Stack ── */
+.stack-label { margin-bottom: 1.25rem; }
 
 .stack-grid {
   display: flex;
@@ -77,60 +78,61 @@
 
 .stack-item {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--text-2);
   border: 1px solid var(--border);
-  padding: 0.3rem 0.7rem;
-  border-radius: 2px;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0;
   background: var(--bg-2);
   transition: all 0.2s;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .stack-item:hover {
   border-color: var(--accent);
   color: var(--accent);
   background: var(--accent-dim);
+  box-shadow: 0 0 12px var(--accent-glow);
 }
 
+/* ── Info card ── */
 .about-card {
   background: var(--bg-2);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
 }
 
 .about-card-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.85rem 1.25rem;
+  padding: 0.9rem 1.25rem;
   border-bottom: 1px solid var(--border);
   font-size: 0.83rem;
+  transition: background 0.2s;
 }
 
-.about-card-row:last-child {
-  border-bottom: none;
-}
+.about-card-row:hover { background: var(--surface); }
+.about-card-row:last-child { border-bottom: none; }
 
 .about-card-key {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   color: var(--text-3);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .about-card-val {
   color: var(--text);
   font-weight: 500;
+  font-size: 0.82rem;
 }
 
 @media (max-width: 900px) {
-  .about-inner {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
+  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
   .about-section { padding: 5rem 0; }
 }
