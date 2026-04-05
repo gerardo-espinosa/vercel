@@ -7,6 +7,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
+  // Debug: verificar que el API key existe
+  if (!process.env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY is not set')
+    return res.status(500).json({ error: 'Email service not configured' })
+  }
+
   const { name, email, phone, service, message } = req.body
 
   if (!name || !email || !service || !message) {
@@ -14,8 +20,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    await resend.emails.send({
-      from: 'Geamy Contact Form <onboarding@resend.dev>',
+    const result = await resend.emails.send({
+      from: 'Geamy Contact Form <noreply@geamyservices.com>',
       to:   'bot@geamyservices.com',
       replyTo: email,
       subject: `[Geamy] New inquiry — ${service}`,
@@ -56,10 +62,11 @@ export default async function handler(req, res) {
       `,
     })
 
+    console.log('Email sent:', result)
     return res.status(200).json({ ok: true })
 
   } catch (err) {
-    console.error('Resend error:', err)
-    return res.status(500).json({ error: 'Failed to send email' })
+    console.error('Resend error details:', JSON.stringify(err))
+    return res.status(500).json({ error: 'Failed to send email', detail: err.message })
   }
 }
