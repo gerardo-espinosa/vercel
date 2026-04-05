@@ -2,15 +2,25 @@ import { useState } from 'react'
 import './Contact.css'
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [form, setForm]     = useState({ name: '', email: '', phone: '', service: '', message: '' })
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    // Formspree or EmailJS can be wired here
-    setSent(true)
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/contact', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error('Server error')
+      setStatus('success')
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -49,7 +59,7 @@ export default function Contact() {
         </div>
 
         <div className="contact-form-wrap">
-          {sent ? (
+          {status === 'success' ? (
             <div className="form-success">
               <span className="success-icon">✓</span>
               <h3>Message received.</h3>
@@ -92,8 +102,11 @@ export default function Contact() {
                 <label>Tell us about your project</label>
                 <textarea name="message" rows="5" placeholder="Describe what you need..." value={form.message} onChange={handleChange} required />
               </div>
-              <button type="submit" className="btn-primary form-submit">
-                Send Message <span>→</span>
+              {status === 'error' && (
+                <p className="form-error">Something went wrong. Try emailing us directly at gerardo@geamyservices.com</p>
+              )}
+              <button type="submit" className="btn-primary form-submit" disabled={status === 'sending'}>
+                {status === 'sending' ? 'Sending...' : 'Send Message'} <span>→</span>
               </button>
             </form>
           )}
