@@ -17,17 +17,19 @@
 }
 
 .orb-1 {
-  width: 700px; height: 700px;
-  background: rgba(0, 255, 255, 0.055);
-  top: -250px; right: -150px;
-  animation-delay: 0s;
+  width: 600px;
+  height: 600px;
+  background: rgba(176, 106, 255, 0.07);
+  top: -200px;
+  right: -100px;
 }
 
 .orb-2 {
-  width: 500px; height: 500px;
-  background: rgba(255, 0, 255, 0.04);
-  bottom: -100px; left: -120px;
-  animation-delay: -4s;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 106, 219, 0.04);
+  bottom: 0;
+  left: -100px;
 }
 
 .orb-3 {
@@ -130,7 +132,7 @@
 
 .accent-inline {
   color: var(--accent);
-  text-shadow: 0 0 20px var(--accent-glow);
+  text-shadow: 0 0 40px rgba(176,106,255,0.4);
 }
 
 .hero-sub {
@@ -206,9 +208,8 @@
 }
 
 .btn-primary:hover {
-  background: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0,255,255,0.25);
+  background: #c98aff;
+  transform: translateY(-1px);
 }
 
 .btn-arrow { transition: transform 0.2s; }
