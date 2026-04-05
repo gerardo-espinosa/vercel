@@ -17,7 +17,7 @@
 .orb-1 {
   width: 600px;
   height: 600px;
-  background: rgba(0, 212, 255, 0.07);
+  background: rgba(176, 106, 255, 0.07);
   top: -200px;
   right: -100px;
 }
@@ -25,7 +25,7 @@
 .orb-2 {
   width: 400px;
   height: 400px;
-  background: rgba(0, 255, 136, 0.04);
+  background: rgba(255, 106, 219, 0.04);
   bottom: 0;
   left: -100px;
 }
@@ -85,7 +85,7 @@
 
 .accent-text {
   color: var(--accent);
-  text-shadow: 0 0 40px rgba(0,212,255,0.4);
+  text-shadow: 0 0 40px rgba(176,106,255,0.4);
 }
 
 .hero-sub {
@@ -160,7 +160,7 @@
 }
 
 .btn-primary:hover {
-  background: #33deff;
+  background: #c98aff;
   transform: translateY(-1px);
 }
 
