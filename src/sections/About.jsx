@@ -17,7 +17,7 @@ export default function About() {
   return (
     <section className="about-section" id="about">
       <div className="container about-inner">
-        <div className="about-content reveal">
+        <div className="about-content reveal-left">
           <span className="section-label">Who we are</span>
           <h2 className="section-title">
             About<br />
@@ -48,11 +48,17 @@ export default function About() {
           </div>
         </div>
 
-        <div className="about-stack reveal reveal-delay-2">
+        <div className="about-stack reveal-right reveal-delay-2">
           <p className="stack-label section-label">Tech stack</p>
           <div className="stack-grid">
-            {stack.map(s => (
-              <div className="stack-item" key={s}>{s}</div>
+            {stack.map((s, i) => (
+              <div
+                className="stack-item"
+                key={s}
+                style={{ animationDelay: `${i * 0.045}s` }}
+              >
+                {s}
+              </div>
             ))}
           </div>
 

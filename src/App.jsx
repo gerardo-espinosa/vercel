@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import ParticleNetwork from './components/ParticleNetwork'
 import Hero from './sections/Hero'
 import Services from './sections/Services'
 import About from './sections/About'
@@ -59,7 +60,7 @@ export default function App() {
 
   // Scroll reveal
   useEffect(() => {
-    const els = document.querySelectorAll('.reveal')
+    const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') })
     }, { threshold: 0.12 })
@@ -69,10 +70,11 @@ export default function App() {
 
   return (
     <>
+      <ParticleNetwork />
       <div className="cursor-dot"  ref={dotRef} />
       <div className="cursor-ring" ref={ringRef} />
       <Navbar />
-      <main>
+      <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero />
         <Services />
         <About />

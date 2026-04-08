@@ -31,6 +31,7 @@
   gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
+  perspective: 1200px;
 }
 
 /* ── Card ── */
@@ -42,7 +43,9 @@
   gap: 0.85rem;
   position: relative;
   overflow: hidden;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.15s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 /* Top neon line on hover */
@@ -52,25 +55,42 @@
   top: 0; left: 0; right: 0;
   height: 2px;
   background: var(--card-accent, var(--accent));
-  box-shadow: 0 0 12px var(--card-accent, var(--accent));
+  box-shadow: 0 0 14px var(--card-accent, var(--accent));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.35s ease;
 }
 
-/* Bottom glow on hover */
+/* Shimmer sweep on hover */
 .service-card::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at top left, rgba(var(--card-accent-rgb, 0,255,255), 0.04) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(0, 212, 255, 0.05) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  transform: translateX(-100%) skewX(-10deg);
+  pointer-events: none;
+  transition: none;
 }
 
 .service-card:hover { background: var(--surface); }
 .service-card:hover::before { transform: scaleX(1); }
-.service-card:hover::after  { opacity: 1; }
+.service-card:hover::after {
+  animation: shimmer-sweep 0.8s ease forwards;
+}
+.service-card:hover {
+  box-shadow: inset 0 0 40px rgba(0, 212, 255, 0.03);
+}
+
+@keyframes shimmer-sweep {
+  0%   { transform: translateX(-100%) skewX(-10deg); }
+  100% { transform: translateX(200%)  skewX(-10deg); }
+}
 
 /* ── Card top row ── */
 .service-card-top {
@@ -86,17 +106,30 @@
   letter-spacing: 0.12em;
 }
 
-.service-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--card-accent, var(--accent));
-  opacity: 0.35;
-  transition: opacity 0.25s, box-shadow 0.25s;
+/* ── Icon wrapper ── */
+.service-icon-wrap {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: var(--accent-dim);
+  transition: all 0.3s ease;
 }
 
-.service-card:hover .service-dot {
-  opacity: 1;
-  box-shadow: 0 0 12px var(--card-accent, var(--accent));
+.service-icon {
+  color: var(--card-accent, var(--accent));
+  transition: filter 0.3s ease;
+}
+
+.service-card:hover .service-icon-wrap {
+  border-color: var(--card-accent, var(--accent));
+  box-shadow: 0 0 18px var(--card-accent, var(--accent));
+}
+
+.service-card:hover .service-icon {
+  filter: drop-shadow(0 0 6px var(--card-accent, var(--accent)));
 }
 
 /* ── Text ── */
@@ -142,7 +175,7 @@
 }
 
 .service-card:hover .service-tag {
-  border-color: rgba(var(--card-accent), 0.2);
+  border-color: rgba(0, 212, 255, 0.2);
   color: var(--text-2);
 }
 
