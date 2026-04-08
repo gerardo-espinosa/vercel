@@ -14,6 +14,18 @@
   color: var(--accent);
   text-shadow: 0 0 20px var(--accent-glow);
   display: block;
+  background: linear-gradient(270deg, #00d4ff, #00ff88, #0ea5e9, #00d4ff);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-flow 6s ease infinite;
+}
+
+@keyframes gradient-flow {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
 }
 
 .about-text {
@@ -39,6 +51,15 @@
   font-size: 0.76rem;
   color: var(--text-2);
   letter-spacing: 0.04em;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.cert-badge:hover {
+  border-color: var(--border-hover);
+  background: var(--surface);
 }
 
 .cert-status {
@@ -50,6 +71,7 @@
 .cert-status.active {
   background: var(--green);
   box-shadow: 0 0 10px var(--green);
+  animation: blink 3s ease infinite;
 }
 
 .cert-status.in-progress {
@@ -84,9 +106,16 @@
   padding: 0.3rem 0.75rem;
   border-radius: 0;
   background: var(--bg-2);
-  transition: all 0.2s;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 0.5s ease both;
+  transition: border-color 0.2s, color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+/* Stack items animate in when parent becomes .visible */
+.reveal-right.visible .stack-item {
+  opacity: 1;
 }
 
 .stack-item:hover {
